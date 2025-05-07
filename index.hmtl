@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ربات شناسایی مزاحم | NumberFinderRobot - شناسایی شماره‌های ناشناس</title>
+    <meta name="description" content="با ربات NumberFinderRobot، شناسایی شماره‌های مزاحم و ناشناس در تلگرام را تجربه کنید. پشتیبانی از تمام اپراتورهای ایران و 150 کشور جهان">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #ff0000;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        
+        .slogan {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 15px 35px;
+            margin-top: 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            border: 2px solid var(--accent);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+            background-color: #ff3333;
+            color: white;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .how-it-works {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 50px;
+            margin: 60px 0;
+            border: 1px solid #333;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent);
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .step-number {
+            background-color: var(--accent);
+            color: var(--primary);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .supported-operators {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .operator {
+            background-color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: #111;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 80px;
+            border-top: 1px solid #333;
+        }
+        
+        .social-links {
+            margin-top: 25px;
+        }
+        
+        .social-link {
+            color: var(--text-secondary);
+            margin: 0 15px;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .how-it-works {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">NumberFinderRobot</div>
+            <div class="slogan">پیدا کردن نام صاحب شماره‌های مزاحم در تلگرام</div>
+            <a href="https://t.me/numberfinderobot" class="cta-button">
+                <i class="fab fa-telegram"></i> شروع استفاده از ربات
+            </a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3 class="feature-title">شناسایی مزاحمان</h3>
+                <p>با وارد کردن شماره تماس، نام صاحب شماره را دریافت کنید. دیگر نگران تماس‌های ناشناس نباشید!</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="feature-title">پشتیبانی از 150 کشور</h3>
+                <p>شماره‌های ایرانی و بین‌المللی را شناسایی کنید. کافیست کد کشور را وارد نمایید.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sim-card"></i>
+                </div>
+                <h3 class="feature-title">تمام اپراتورهای ایران</h3>
+                <p>ایرانسل، همراه اول، رایتل و سایر اپراتورهای ایرانی به طور کامل پشتیبانی می‌شوند.</p>
+            </div>
+        </section>
+        
+        <section class="how-it-works">
+            <h2 class="section-title">نحوه استفاده از ربات</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>به ربات بپیوندید</h3>
+                        <p>روی دکمه <span class="highlight">شروع استفاده از ربات</span> کلیک کنید یا آدرس <a href="https://t.me/numberfinderobot" style="color: var(--accent);">@numberfinderobot</a> را در تلگرام جستجو کنید.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>شماره را وارد کنید</h3>
+                        <p>شماره مزاحم را با کد کشور وارد کنید. مثال: <span class="highlight">+989123456789</span> برای ایران</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>دریافت اطلاعات</h3>
+                        <p>ربات به سرعت نام صاحب شماره و اطلاعات مرتبط را برای شما ارسال می‌کند.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <h3 style="margin-bottom: 20px; color: var(--accent);">اپراتورهای پشتیبانی شده در ایران:</h3>
+                <div class="supported-operators">
+                    <span class="operator">همراه اول</span>
+                    <span class="operator">ایرانسل</span>
+                    <span class="operator">رایتل</span>
+                    <span class="operator">شاتل موبایل</span>
+                    <span class="operator">آذرتل</span>
+                </div>
+            </div>
+        </section>
+        
+        <section style="text-align: center; margin: 60px 0;">
+            <h2 class="section-title">دیگر شماره‌های ناشناس را شناسایی کنید!</h2>
+            <p style="margin-bottom: 30px; font-size: 1.2rem;">با <span class="highlight">NumberFinderRobot</span> از شر مزاحمت‌های تلفنی خلاص شوید</p>
+            <a href="https://t.me/numberfinderobot" class="cta-button">
+                <i class="fab fa-telegram"></i> شروع شناسایی شماره‌ها
+            </a>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 NumberFinderRobot - تمام حقوق محفوظ است</p>
+            <p style="margin-top: 10px;">قدرتمندترین ربات شناسایی شماره‌های مزاحم در تلگرام</p>
+            <div class="social-links">
+                <a href="https://t.me/numberfinderobot" class="social-link">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
